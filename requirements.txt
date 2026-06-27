@@ -1,0 +1,5 @@
+google-generativeai
+moviepy
+requests
+python-dotenv
+pydantic

@@ -1,0 +1,25 @@
+# Secrets & Credentials
+.env
+.env.example
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local Media Assets (Keep repo small and clean)
+assets/clips/*.mp4
+assets/audio/*.mp3
+!assets/clips/.gitkeep
+!assets/audio/.gitkeep
+
+# Output Videos (These are generated on the fly)
+output/*
+!output/.gitkeep
+
+# IDEs & System files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

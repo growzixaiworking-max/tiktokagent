@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "topic": "Estimation Mistake",
+    "hook": "Contractors lose thousands because of this one estimating mistake.",
+    "body": "Most contractors focus on labor costs and forget material waste percentages. A small mistake can destroy your profit margin. Always verify quantities before submitting a bid.",
+    "cta": "Need an accurate estimate? Comment ESTIMATE"
+  },
+  {
+    "id": 2,
+    "topic": "Material Takeoff",
+    "hook": "Stop wasting hours on material takeoffs.",
+    "body": "Manual counting is slow and leads to errors. Professional estimators use digital tools to get precise counts for lumber, concrete, and roofing in half the time.",
+    "cta": "Save time today. DM ESTIMATE for help."
+  },
+  {
+    "id": 3,
+    "topic": "Profit Margins",
+    "hook": "Is your bid too low? You might be working for free.",
+    "body": "If you don't account for overhead and hidden site conditions, your profit is gone before the job starts. Proper estimation is the difference between a business and a hobby.",
+    "cta": "Protect your profit. Follow for more tips."
+  },
+  {
+    "id": 4,
+    "topic": "Lumber Prices",
+    "hook": "Lumber prices are volatile. Here is how to bid.",
+    "body": "Never give a fixed price without a 7-day expiration. Material prices shift daily. Protect your contract with a price escalation clause based on real-time data.",
+    "cta": "Comment 'BID' for our latest template."
+  },
+  {
+    "id": 5,
+    "topic": "Concrete Estimation",
+    "hook": "How much concrete do you actually need?",
+    "body": "Don't just calculate volume. Add 10% for spillage and subgrade variations. Getting shorted on a pour costs triple in delay fees and labor.",
+    "cta": "Need concrete takeoffs? DM ESTIMATE."
+  },
+  {
+    "id": 6,
+    "topic": "Project Delays",
+    "hook": "The #1 reason projects go over budget.",
+    "body": "It's not the labor. It's the wrong material order. An accurate takeoff ensures you have exactly what you need on site, when you need it.",
+    "cta": "DM for professional estimation services."
+  },
+  {
+    "id": 7,
+    "topic": "Roofing Takeoffs",
+    "hook": "Roofing contractors: stop eyeballing your estimates.",
+    "body": "Pitch, waste, and ridge caps add up. Using aerial data and professional takeoffs can save you $500 per roof in over-ordering.",
+    "cta": "Want a sample estimate? Comment 'ROOF'."
+  },
+  {
+    "id": 8,
+    "topic": "Winning Bids",
+    "hook": "How to win more bids without lowering your price.",
+    "body": "Clients trust contractors who provide detailed, line-item estimates. Transparency wins over a single total number every time.",
+    "cta": "Get professional takeoffs. DM 'ESTIMATE'."
+  },
+  {
+    "id": 9,
+    "topic": "Overhead Costs",
+    "hook": "Are you forgetting your overhead in your bids?",
+    "body": "Gas, insurance, and tool wear-and-tear must be included. If you only charge for labor and materials, you are losing money every day.",
+    "cta": "Follow to learn how to price like a pro."
+  },
+  {
+    "id": 10,
+    "topic": "Commercial vs Residential",
+    "hook": "Residential vs Commercial: The estimation gap.",
+    "body": "Commercial bids require strict adherence to specs and blueprints. One missed detail in the notes can cost you the entire contract.",
+    "cta": "Need commercial takeoffs? We've got you covered."
+  },
+  {
+    "id": 11,
+    "topic": "Drywall Estimation",
+    "hook": "Calculate drywall like a pro.",
+    "body": "Measure the square footage, but don't forget the waste factor for corners and cutouts. A 15% waste factor is standard for complex layouts.",
+    "cta": "DM 'DRYWALL' for a quick quote."
+  },
+  {
+    "id": 12,
+    "topic": "Electrical Estimating",
+    "hook": "The danger of 'per point' electrical pricing.",
+    "body": "Material costs for copper and conduit are rising. Fixed 'per point' pricing is risky. Always base your bid on a full material takeoff.",
+    "cta": "Contact us for electrical estimation."
+  },
+  {
+    "id": 13,
+    "topic": "Plumbing Takeoffs",
+    "hook": "Don't miss the small fittings in your plumbing bid.",
+    "body": "Pipe is easy, but the fittings, valves, and specialized hardware are where the money is. Missing these can eat your profit margin fast.",
+    "cta": "Accurate plumbing takeoffs are just a DM away."
+  },
+  {
+    "id": 14,
+    "topic": "Subcontractor Management",
+    "hook": "How to check your sub's estimate.",
+    "body": "Never trust a sub's 'rough guess'. Run your own independent takeoff to ensure they aren't overcharging or missing scope.",
+    "cta": "Need a second opinion? DM ESTIMATE."
+  },
+  {
+    "id": 15,
+    "topic": "Blueprint Reading",
+    "hook": "Can't read blueprints? You're losing jobs.",
+    "body": "The 'Notes' section on the second page often contains the most expensive requirements. Always read every line before pricing.",
+    "cta": "Follow for blueprint reading tips."
+  },
+  {
+    "id": 16,
+    "topic": "Seasonality in Construction",
+    "hook": "Winter is coming. Is your pricing ready?",
+    "body": "Cold weather work requires heating, protection, and slower labor rates. Don't bid summer prices for winter projects.",
+    "cta": "DM for adjusted winter estimates."
+  },
+  {
+    "id": 17,
+    "topic": "Change Orders",
+    "hook": "How to handle change orders without losing the client.",
+    "body": "Always have a pre-agreed unit price for extras. When the scope changes, the price update is just a math problem, not an argument.",
+    "cta": "Comment 'ORDER' for our change order template."
+  },
+  {
+    "id": 18,
+    "topic": "Software vs Manual",
+    "hook": "Excel is not an estimation tool.",
+    "body": "One broken formula in your spreadsheet can bankrupt your project. Dedicated takeoff software is more secure and professional.",
+    "cta": "We use the best tech for your takeoffs. DM us."
+  },
+  {
+    "id": 19,
+    "topic": "Site Visit Importance",
+    "hook": "Why you must visit the site before the final bid.",
+    "body": "Access issues, soil conditions, and existing utility lines can't always be seen on a drawing. Don't bid blind.",
+    "cta": "Professional site-verified estimates. Contact us."
+  },
+  {
+    "id": 20,
+    "topic": "Closing the Sale",
+    "hook": "How to close the deal with a professional estimate.",
+    "body": "A clean, branded PDF estimate shows you are a professional. It builds trust and makes the client feel safe spending money with you.",
+    "cta": "Level up your brand. Get professional takeoffs today."
+  }
+]
