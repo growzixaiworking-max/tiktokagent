@@ -1,0 +1,56 @@
+name: TikTok Video Scheduler
+
+on:
+  schedule:
+    # Run at 8 AM, 12 PM, 6 PM, 9 PM EST
+    # Translates to UTC times: 12:00, 16:00, 22:00, 01:00 UTC
+    - cron: '0 12 * * *'
+    - cron: '0 16 * * *'
+    - cron: '0 22 * * *'
+    - cron: '0 1 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+
+jobs:
+  generate_and_email:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install FFmpeg & ImageMagick
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ffmpeg imagemagick
+
+    - name: Configure ImageMagick Permissions
+      run: |
+        # Fixes MoviePy TextClip security policy issues on Linux
+        sudo sed -i 's/<policy domain="path" rights="none" pattern="@\*"/<policy domain="path" rights="read|write" pattern="@\*"/g' /etc/ImageMagick-6/policy.xml
+
+    - name: Install Dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run TikTok Video Generator
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+        ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+        SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
+        SENDER_PASSWORD: ${{ secrets.SENDER_PASSWORD }}
+      run: |
+        python main.py
+
+    - name: Commit Updated Database (Memory)
+      run: |
+        git config --global user.name "GitHub Action Bot"
+        git config --global user.email "action@github.com"
+        git add data/growzix.db
+        git commit -m "chore: update database tracking [skip ci]" || echo "No database changes to commit"
+        git push
