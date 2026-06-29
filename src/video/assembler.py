@@ -1,52 +1,70 @@
 import os
+import platform
 from moviepy import VideoFileClip, TextClip, CompositeVideoClip, AudioFileClip, ColorClip
 import json
+
+def _find_font():
+    system = platform.system()
+    if system == "Windows":
+        candidates = [
+            r"C:\Windows\Fonts\arial.ttf",
+            r"C:\Windows\Fonts\calibri.ttf",
+            r"C:\Windows\Fonts\segoeui.ttf",
+        ]
+    elif system == "Darwin":
+        candidates = [
+            "/System/Library/Fonts/Helvetica.ttc",
+            "/Library/Fonts/Arial.ttf",
+        ]
+    else:
+        candidates = [
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+            "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+            "/usr/share/fonts/truetype/ubuntu/Ubuntu-R.ttf",
+        ]
+    for c in candidates:
+        if os.path.exists(c):
+            return c
+    return None
 
 class VideoAssembler:
     def __init__(self, output_dir="output"):
         self.output_dir = output_dir
+        self.font_path = _find_font()
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
 
     def create_tiktok_video(self, video_path, script_data, audio_path=None):
-        """
-        Combines video, text overlays, and audio.
-        Note: requires ImageMagick installed for TextClip.
-        """
-        clip = VideoFileClip(video_path).resized(height=1920).without_audio() # Mute background
-        # Crop to center if aspect ratio is wrong
+        clip = VideoFileClip(video_path).resized(height=1920).without_audio()
         w, h = clip.size
         target_w = h * 9 / 16
         clip = clip.cropped(x_center=w/2, width=target_w)
 
-        # Create Hook Text
+        common_args = {
+            "font": self.font_path,
+            "method": "caption",
+            "size": (int(target_w*0.8), None),
+        }
+
         hook_txt = TextClip(
             text=script_data['hook'],
             font_size=70,
             color='yellow',
-            font=r'C:\Windows\Fonts\arial.ttf',
-            method='caption',
-            size=(int(target_w*0.8), None)
+            **common_args
         ).with_duration(3).with_position('center')
 
-        # Create Body Text (appears after hook)
         body_txt = TextClip(
             text=script_data['body'],
             font_size=50,
             color='white',
-            font=r'C:\Windows\Fonts\arial.ttf',
-            method='caption',
-            size=(int(target_w*0.8), None)
+            **common_args
         ).with_start(3).with_duration(clip.duration - 6).with_position('center')
 
-        # Create CTA Text
         cta_txt = TextClip(
             text=script_data['cta'],
             font_size=60,
             color='green',
-            font=r'C:\Windows\Fonts\arial.ttf',
-            method='caption',
-            size=(int(target_w*0.8), None)
+            **common_args
         ).with_start(clip.duration - 3).with_duration(3).with_position(('center', int(h*0.8)))
 
         # Combine

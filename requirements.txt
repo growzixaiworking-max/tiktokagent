@@ -3,3 +3,4 @@ moviepy
 requests
 python-dotenv
 pydantic
+schedule
