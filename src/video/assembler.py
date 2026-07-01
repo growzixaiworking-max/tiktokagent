@@ -35,6 +35,18 @@ class VideoAssembler:
             os.makedirs(output_dir)
 
     def create_tiktok_video(self, video_path, script_data, audio_path=None):
+        import random
+        
+        # Define unique design themes (Color Palettes)
+        themes = [
+            {"hook": "yellow", "body": "white", "cta": "green", "bg": "black"}, # Classic Attention
+            {"hook": "cyan", "body": "white", "cta": "orange", "bg": "darkblue"}, # Modern Corporate
+            {"hook": "red", "body": "yellow", "cta": "white", "bg": "maroon"}, # High Urgency
+            {"hook": "lime", "body": "white", "cta": "yellow", "bg": "darkgreen"}, # Success/Growth
+            {"hook": "white", "body": "cyan", "cta": "magenta", "bg": "purple"} # Trendy/Vibrant
+        ]
+        theme = random.choice(themes)
+
         clip = VideoFileClip(video_path).resized(height=1920).without_audio()
         w, h = clip.size
         target_w = h * 9 / 16
@@ -46,26 +58,33 @@ class VideoAssembler:
             "size": (int(target_w*0.8), None),
         }
 
+        # Randomize font sizes slightly for variety
+        hook_size = random.randint(65, 80)
+        body_size = random.randint(45, 55)
+        cta_size = random.randint(55, 65)
+
         hook_txt = TextClip(
             text=script_data['hook'],
-            font_size=70,
-            color='yellow',
+            font_size=hook_size,
+            color=theme['hook'],
             **common_args
         ).with_duration(3).with_position('center')
 
         body_txt = TextClip(
             text=script_data['body'],
-            font_size=50,
-            color='white',
+            font_size=body_size,
+            color=theme['body'],
             **common_args
         ).with_start(3).with_duration(clip.duration - 6).with_position('center')
 
+        # Randomize CTA position slightly (bottom 70% to 90%)
+        cta_y = random.randint(int(h*0.7), int(h*0.9))
         cta_txt = TextClip(
             text=script_data['cta'],
-            font_size=60,
-            color='green',
+            font_size=cta_size,
+            color=theme['cta'],
             **common_args
-        ).with_start(clip.duration - 3).with_duration(3).with_position(('center', int(h*0.8)))
+        ).with_start(clip.duration - 3).with_duration(3).with_position(('center', cta_y))
 
         # Combine
         final = CompositeVideoClip([clip, hook_txt, body_txt, cta_txt])
