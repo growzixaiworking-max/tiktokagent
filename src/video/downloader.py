@@ -15,9 +15,10 @@ class VideoDownloader:
             print("Error: PEXELS_API_KEY not found in .env")
             return []
 
+        import random
         params = {
             "query": query,
-            "per_page": count,
+            "per_page": 15, # Fetch a pool of videos to ensure uniqueness
             "orientation": "portrait"
         }
         
@@ -27,14 +28,18 @@ class VideoDownloader:
             return []
 
         data = response.json()
+        videos = data.get("videos", [])
+        if not videos:
+            return []
+
+        # Randomly pick 'count' videos from the pool
+        selected_videos = random.sample(videos, min(len(videos), count))
         downloaded_paths = []
 
-        for i, video in enumerate(data.get("videos", [])):
-            # Prioritize HD quality above 1080p if available
+        for i, video in enumerate(selected_videos):
             video_files = video.get("video_files", [])
             video_url = None
             
-            # Sort by width descending to get best quality
             sorted_files = sorted(video_files, key=lambda x: x.get('width', 0), reverse=True)
             if sorted_files:
                 video_url = sorted_files[0].get("link")
@@ -43,7 +48,7 @@ class VideoDownloader:
                 continue
 
             filename = f"assets/clips/{query.replace(' ', '_')}_{i}.mp4"
-            print(f"📥 Downloading High-Quality {query} clip...")
+            print(f"📥 Downloading Unique {query} clip...")
             
             v_res = requests.get(video_url)
             with open(filename, "wb") as f:

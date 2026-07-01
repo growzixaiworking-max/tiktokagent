@@ -28,6 +28,7 @@ class ScriptGenerator:
         {{
             "id": "unique_id_here",
             "topic": "Short Topic Name",
+            "visual_query": "Specific Pexels search term for a unique background clip",
             "hook": "Strong 3-second hook to stop the scroll",
             "body": "Concise, value-driven explanation (max 3 sentences)",
             "cta": "Clear Call to Action (e.g., 'Link in bio for a free quote')"

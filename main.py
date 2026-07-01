@@ -94,8 +94,8 @@ def main():
 
         print(f"\n🎬 Processing NEW Video {script_id}: {script['topic']}")
         
-        # A. Download Footage based on topic
-        query = search_queries.get(script['topic'], "construction worker")
+        # A. Download Footage based on AI suggested visual query
+        query = script.get('visual_query', 'construction worker')
         clips = downloader.search_and_download(query, count=1)
         if not clips: 
             print(f"⚠️ Could not download clips for query: {query}. Skipping.")
