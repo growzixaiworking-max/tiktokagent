@@ -29,9 +29,9 @@ def get_generated_script_ids():
     return ids
 
 def generate_metadata(script):
-    hashtags = "#construction #estimation #materialtakeoff #contractor #usa #estimating #builder"
-    caption = f"{script['hook']} 🏗️\n\n{hashtags}"
-    return caption
+    description = script.get('description', 'No description provided.')
+    hashtags = script.get('seo_hashtags', '#construction #estimation #builder')
+    return f"{description}\n\n{hashtags}"
 
 def main():
     print("🚀 Starting Growzix TikTok Automation System...")

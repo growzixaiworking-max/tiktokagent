@@ -31,7 +31,9 @@ class ScriptGenerator:
             "visual_query": "Specific Pexels search term for a unique background clip",
             "hook": "Strong 3-second hook to stop the scroll",
             "body": "Concise, value-driven explanation (max 3 sentences)",
-            "cta": "Clear Call to Action (e.g., 'Link in bio for a free quote')"
+            "cta": "Clear Call to Action (e.g., 'Link in bio for a free quote')",
+            "description": "A professional, 50-word SEO-optimized description for TikTok/Instagram based on this video's content",
+            "seo_hashtags": "A string of 10-15 highly relevant, high-traffic SEO hashtags"
         }}
         
         Topics should cover:
