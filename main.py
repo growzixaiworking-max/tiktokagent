@@ -5,7 +5,10 @@ from src.video.downloader import VideoDownloader
 from src.video.assembler import VideoAssembler
 from src.voice.generator import VoiceGenerator
 from src.utils.notifier import EmailNotifier
+from src.scripts.generate_initial_scripts import ScriptGenerator
 from dotenv import load_dotenv
+
+load_dotenv()
 
 load_dotenv()
 
@@ -36,8 +39,8 @@ def main():
     # 1. Load Scripts
     script_file = "data/initial_scripts.json"
     if not os.path.exists(script_file):
-        print("Error: Scripts not found.")
-        return
+        print("Error: Scripts not found. Generating initial set...")
+        ScriptGenerator().update_script_file()
 
     with open(script_file, "r") as f:
         scripts = json.load(f)
@@ -47,10 +50,26 @@ def main():
     assembler = VideoAssembler()
     voice_gen = VoiceGenerator()
     notifier = EmailNotifier()
+    script_gen = ScriptGenerator()
 
     # 3. Get already generated IDs to avoid duplication
     generated_ids = get_generated_script_ids()
     print(f"ℹ️ Already generated Script IDs: {generated_ids}")
+
+    # Check if we have any scripts left to process
+    scripts_to_process = [s for s in scripts if s["id"] not in generated_ids]
+    
+    if not scripts_to_process:
+        print("\n♻️ No new scripts available. Generating fresh content...")
+        script_gen.update_script_file()
+        # Reload scripts after generation
+        with open(script_file, "r") as f:
+            scripts = json.load(f)
+        scripts_to_process = [s for s in scripts if s["id"] not in generated_ids]
+
+    if not scripts_to_process:
+        print("❌ Failed to generate new scripts. Exiting.")
+        return
 
     # Map topics to relevant high-quality stock video search queries
     search_queries = {
@@ -65,13 +84,13 @@ def main():
     videos_to_generate = 5
     generated_count = 0
 
-    for script in scripts:
+    for script in scripts_to_process:
         if generated_count >= videos_to_generate:
             break
             
         script_id = script["id"]
-        if script_id in generated_ids:
-            continue # Skip already generated videos!
+        # No need to check generated_ids here as we filtered scripts_to_process already
+
 
         print(f"\n🎬 Processing NEW Video {script_id}: {script['topic']}")
         

@@ -12,7 +12,7 @@ class EmailNotifier:
     def __init__(self):
         self.sender_email = os.getenv("SENDER_EMAIL")
         self.sender_password = os.getenv("SENDER_PASSWORD") # This must be a Gmail App Password
-        self.receiver_email = "alishbarehman526@gmail.com"
+        self.receiver_email = os.getenv("RECEIVER_EMAIL")
 
     def send_video_email(self, video_path, caption):
         if not self.sender_email or not self.sender_password:
